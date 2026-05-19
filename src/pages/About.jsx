@@ -1,9 +1,24 @@
 import { LuShieldCheck } from 'react-icons/lu'
 import { companyValues } from '../data/siteContent.js'
+import SEO from '../components/SEO'
+
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About NAH44",
+  "description": "Corporate profile of NAH44. We provide transparent compliance filings, licensing, and credit desk coordination across South India.",
+  "url": `${window.location.origin}/about`
+};
 
 function About() {
   return (
     <div className="container">
+      <SEO 
+        title="About Us — Transparent Compliance & Advisory Support"
+        description="Learn more about NAH44. We simplify corporate compliance, banking credit approvals, insurance portfolios, and business licensing across South India."
+        keywords="About NAH44, compliance agency Hyderabad, banking support, trusted loan coordination, MSME registration assistance"
+        schema={aboutSchema}
+      />
       {/* About Hero Section */}
       <section className="page-hero page-hero--rich" aria-label="About Us Header">
         <span className="eyebrow">Corporate Profile</span>

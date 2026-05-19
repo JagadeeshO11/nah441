@@ -2,6 +2,19 @@ import { LuCircleCheck, LuQrCode, LuX } from 'react-icons/lu'
 import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { contactInfo, insuranceOffers, serviceCategories } from '../data/siteContent.js'
+import SEO from '../components/SEO'
+
+const servicesSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "NAH44 Services",
+  "description": "Premium Insurance portfolios, home and business loans coordination, and corporate legal compliance support across South India.",
+  "provider": {
+    "@type": "Organization",
+    "name": "NAH44",
+    "url": typeof window !== 'undefined' ? window.location.origin : ''
+  }
+};
 
 function Services() {
   const [selectedCategory, setSelectedCategory] = useState(null)
@@ -56,13 +69,13 @@ function Services() {
     window.addEventListener('keydown', handleKeyDown)
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown)
       document.body.classList.remove('modal-open')
       document.body.style.overflow = originalBodyStyle.overflow
       document.body.style.position = originalBodyStyle.position
       document.body.style.top = originalBodyStyle.top
       document.body.style.width = originalBodyStyle.width
       window.scrollTo(0, scrollY)
+      window.removeEventListener('keydown', handleKeyDown)
     }
   }, [selectedCategory])
 
@@ -127,6 +140,12 @@ function Services() {
 
   return (
     <div className="container">
+      <SEO 
+        title="Our Services — Insurance Portfolios, Business & Home Loans"
+        description="Explore our specialized services including custom insurance portfolios, commercial/home credits lines, MSME registrations, and private vehicle QR support."
+        keywords="business loans South India, insurance premium support, home credit lines, MSME legal filing, anonymous QR registration Hyderabad"
+        schema={servicesSchema}
+      />
       {/* Services Hero Header */}
       <section className="page-hero page-hero--rich" aria-label="Services Header">
         <span className="eyebrow">Services Portfolio</span>

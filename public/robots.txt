@@ -1,0 +1,11 @@
+# www.robotstxt.org/
+# For domain: https://nah44.in
+
+User-agent: *
+Allow: /
+
+# Exclude dynamic query string parameters to prevent duplicate indexing
+Disallow: /*?*
+
+# Link directly to the sitemap
+Sitemap: https://nah44.in/sitemap.xml

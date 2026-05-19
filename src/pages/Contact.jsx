@@ -2,6 +2,29 @@ import { LuCheck, LuMail, LuMapPin, LuPhone } from 'react-icons/lu'
 import { SiFacebook, SiInstagram, SiYoutube } from 'react-icons/si'
 import { useState } from 'react'
 import { contactInfo } from '../data/siteContent.js'
+import SEO from '../components/SEO'
+
+const contactSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact NAH44",
+  "description": "Get in touch with NAH44. Connect with our advisors, locate our headquarters, or submit a request.",
+  "url": typeof window !== 'undefined' ? `${window.location.origin}/contact` : '',
+  "mainEntity": {
+    "@type": "FinancialService",
+    "name": "NAH44",
+    "telephone": "+918367746197",
+    "email": "nah44vehicleservice@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Beside sitara grand hotel lane, phase 1 kphb colony Hyderabad",
+      "addressLocality": "Hyderabad",
+      "addressRegion": "Telangana",
+      "postalCode": "500072",
+      "addressCountry": "IN"
+    }
+  }
+};
 
 function Contact() {
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contactInfo.address)}`
@@ -46,6 +69,12 @@ function Contact() {
 
   return (
     <div className="container">
+      <SEO 
+        title="Contact Us — Direct Support Desk & Office Coordinates"
+        description="Connect with NAH44. Submit an inquiry for insurance support, business/home loans coordination, or licensing filings. Locate our Hyderabad KPHB headquarters."
+        keywords="contact NAH44, Hyderabad compliance address, loan coordination telephone, legal agent contact Hyderabad, WhatsApp compliance chat"
+        schema={contactSchema}
+      />
       {/* Contact Hero */}
       <section className="page-hero page-hero--rich" aria-label="Contact Header">
         <span className="eyebrow">Direct Support Desk</span>

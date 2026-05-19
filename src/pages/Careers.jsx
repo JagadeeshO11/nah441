@@ -2,6 +2,15 @@ import { LuBriefcase, LuCalendar, LuChevronDown, LuIndianRupee, LuMapPin, LuPhon
 import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { contactInfo, openPositions } from '../data/siteContent.js'
+import SEO from '../components/SEO'
+
+const careersSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "NAH44 Careers",
+  "description": "Job openings, sales officers positions, and careers at NAH44.",
+  "url": typeof window !== 'undefined' ? `${window.location.origin}/careers` : ''
+};
 
 function Careers() {
   const [isApplicationFormOpen, setIsApplicationFormOpen] = useState(false)
@@ -97,6 +106,12 @@ function Careers() {
 
   return (
     <div className="container">
+      <SEO 
+        title="Careers — Join Our Local Advisory Desk"
+        description="Build your future with us at NAH44. We are seeking motivated, energetic, and highly dynamic sales officers to expand our local compliance desks."
+        keywords="sales officer vacancies, compliance desk jobs, financial coordinator career, business analyst Hyderabad, apply for jobs NAH44"
+        schema={careersSchema}
+      />
       {/* Careers Hero */}
       <section className="page-hero page-hero--rich" aria-label="Careers Header">
         <span className="eyebrow">Join Our Network</span>

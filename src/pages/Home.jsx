@@ -1,10 +1,37 @@
 import { LuArrowRight, LuFacebook, LuInstagram, LuSparkles, LuUserCheck, LuYoutube } from 'react-icons/lu'
 import { Link } from 'react-router-dom'
 import { contactInfo, taglines } from '../data/siteContent.js'
+import SEO from '../components/SEO'
+
+const homeSchema = {
+  "@context": "https://schema.org",
+  "@type": "FinancialService",
+  "name": "NAH44",
+  "alternateName": "NAH44 Vehicles & Financial Services",
+  "description": "South India's trusted platform for insurance portfolios, corporate compliance, business/home loans, and privacy-focused vehicle QR code systems.",
+  "url": window.location.origin,
+  "logo": `${window.location.origin}/image.png`,
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "South India"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Hyderabad",
+    "addressRegion": "Telangana",
+    "addressCountry": "IN"
+  }
+};
 
 function Home() {
   return (
     <div className="container">
+      <SEO 
+        title="Trusted Insurance, Business Loans & Vehicle QR"
+        description="NAH44 is South India's premier agency providing custom insurance portfolios, corporate legal compliance, business/home loans, and smart privacy vehicle QR systems."
+        keywords="NAH44, vehicle QR code, business loans Hyderabad, insurance agency South India, corporate legal compliance, home loans Hyderabad, anonymous vehicle contact"
+        schema={homeSchema}
+      />
       <div className="marquee-hanging-container">
         <section className="tagline-marquee" aria-label="Featured Highlights">
           <div className="tagline-marquee__track">
@@ -27,7 +54,9 @@ function Home() {
             <span className="hanging-board__indicator"></span>
             <div className="hanging-board__details">
               <span className="hanging-board__title">Services Available Across All South Indian States</span>
-              <span className="hanging-board__subtitle">These services are provided for NAH44 VEHICLE QR CODE Customer's Only</span>
+              <span className="hanging-board__subtitle">
+                These services are provided for <span className="hanging-board__highlight">NAH44 VEHICLE QR CODE</span> Customer's Only
+              </span>
             </div>
           </div>
         </div>
