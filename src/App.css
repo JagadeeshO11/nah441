@@ -295,6 +295,12 @@ label span {
   overflow-y: auto;
   overscroll-behavior: contain;
   touch-action: none;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+}
+
+.success-modal::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
 }
 
 .success-modal__content {
@@ -1954,6 +1960,12 @@ label span {
   max-height: min(88vh, 760px);
   overflow-y: auto;
   overscroll-behavior: contain;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+}
+
+.request-modal::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
 }
 
 .request-modal h3,
@@ -2757,6 +2769,221 @@ label span {
   -webkit-text-fill-color: transparent;
   color: transparent !important;
 }
+
+/* ─── Premium Hanging Board Styles ─── */
+.marquee-hanging-container {
+  position: relative;
+  margin-top: 1rem;
+  margin-bottom: 6rem; /* Spacing for the single unified board */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.marquee-hanging-container .tagline-marquee {
+  width: 100%;
+  margin-top: 0;
+}
+
+/* Swinging Hanging Board */
+.hanging-board {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  pointer-events: auto;
+  animation: boardSwing 4.5s ease-in-out infinite alternate;
+  transform-origin: top center;
+}
+
+/* The Hanging Chains */
+.hanging-board__chains {
+  display: flex;
+  justify-content: space-between;
+  width: 230px; /* Wider chain separation for single large board */
+  height: 20px;
+  margin-bottom: -2px;
+}
+
+.hanging-board__chain {
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), var(--primary-light));
+  position: relative;
+  border-radius: 1px;
+}
+
+/* Ring connectors for chain realism */
+.hanging-board__chain::before,
+.hanging-board__chain::after {
+  content: '';
+  position: absolute;
+  left: -2.5px;
+  width: 7px;
+  height: 7px;
+  border: 1px solid rgba(255, 140, 0, 0.5);
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.95);
+}
+
+.hanging-board__chain::before {
+  top: 2px;
+}
+
+.hanging-board__chain::after {
+  bottom: 2px;
+}
+
+/* Realistic board style */
+.hanging-board__content {
+  position: relative;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%);
+  border: 1.5px solid var(--primary-light);
+  border-radius: 12px;
+  padding: 0.65rem 2rem;
+  box-shadow: 
+    0 12px 28px -4px rgba(0, 0, 0, 0.6), 
+    0 4px 10px -2px rgba(255, 140, 0, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  white-space: nowrap;
+}
+
+/* Metallic bolts detailing in the upper corners */
+.hanging-board__content::before,
+.hanging-board__content::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #FFFFFF 30%, #7F8C8D 80%);
+  border: 1px solid #34495E;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.hanging-board__content::before {
+  left: 20px;
+}
+.hanging-board__content::after {
+  right: 20px;
+}
+
+/* Pulse animation for standard green indicator */
+.hanging-board__indicator {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 8px #10B981;
+  animation: pulseIndicatorGreen 1.5s infinite alternate;
+  flex-shrink: 0;
+}
+
+/* Details stacked vertically */
+.hanging-board__details {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align items horizontally */
+  text-align: center; /* Center align text */
+  gap: 3px;
+}
+
+/* Primary board title */
+.hanging-board__title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #FFA500 0%, #FF6B00 100%); /* Premium Total Orange Gradient */
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Secondary board exclusivity subtitle */
+.hanging-board__subtitle {
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #FFD29D 0%, #FF8C00 100%); /* Lighter Total Orange Gradient */
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Board swinging keyframes */
+@keyframes boardSwing {
+  0% {
+    transform: translateX(-50%) rotate(-1deg);
+  }
+  100% {
+    transform: translateX(-50%) rotate(1deg);
+  }
+}
+
+@keyframes pulseIndicatorGreen {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+  }
+  100% {
+    transform: scale(1.15);
+    opacity: 1;
+    box-shadow: 0 0 12px rgba(16, 185, 129, 1);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .marquee-hanging-container {
+    margin-bottom: 5.2rem;
+  }
+  .hanging-board__content {
+    padding: 0.55rem 1.2rem;
+    gap: 8px;
+    border-radius: 8px;
+  }
+  .hanging-board__details {
+    gap: 1px;
+  }
+  .hanging-board__title {
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+  }
+  .hanging-board__subtitle {
+    font-size: 0.68rem;
+    letter-spacing: 0.01em;
+  }
+  .hanging-board__content::before,
+  .hanging-board__content::after {
+    width: 4px;
+    height: 4px;
+    top: 4px;
+  }
+  .hanging-board__content::before { left: 10px; }
+  .hanging-board__content::after { right: 10px; }
+
+  .hanging-board__chains {
+    width: 160px;
+    height: 15px;
+  }
+}
+
+
 
 
 

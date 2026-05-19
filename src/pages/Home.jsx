@@ -5,16 +5,33 @@ import { contactInfo, taglines } from '../data/siteContent.js'
 function Home() {
   return (
     <div className="container">
-      <section className="tagline-marquee" aria-label="Featured Highlights">
-        <div className="tagline-marquee__track">
-          {[...taglines, ...taglines].map((tagline, index) => (
-            <span className="tagline-marquee__item" key={`${tagline}-${index}`}>
-              <LuSparkles size={16} />
-              {tagline}
-            </span>
-          ))}
+      <div className="marquee-hanging-container">
+        <section className="tagline-marquee" aria-label="Featured Highlights">
+          <div className="tagline-marquee__track">
+            {[...taglines, ...taglines].map((tagline, index) => (
+              <span className="tagline-marquee__item" key={`${tagline}-${index}`}>
+                <LuSparkles size={16} />
+                {tagline}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        {/* Realistic Single Hanging Board */}
+        <div className="hanging-board" aria-label="Service Availability & Exclusivity Notice">
+          <div className="hanging-board__chains">
+            <span className="hanging-board__chain"></span>
+            <span className="hanging-board__chain"></span>
+          </div>
+          <div className="hanging-board__content">
+            <span className="hanging-board__indicator"></span>
+            <div className="hanging-board__details">
+              <span className="hanging-board__title">Services Available Across All South Indian States</span>
+              <span className="hanging-board__subtitle">These services are provided for NAH44 VEHICLE QR CODE Customer's Only</span>
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
 
       {/* Split Landing Hero Section */}
       <section className="home-hero-grid home-hero-grid--align-center" aria-label="Welcome">
