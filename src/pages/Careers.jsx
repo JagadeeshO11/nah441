@@ -79,29 +79,39 @@ function Careers() {
       return
     }
 
-    const subject = encodeURIComponent(`Job Application - ${formData.fullName}`)
-    const body = encodeURIComponent(
-      [
-        'Job Application Details',
-        '',
-        `Full Name: ${formData.fullName}`,
-        `Date of Birth: ${formData.dob || 'Not provided'}`,
-        `Father Name: ${formData.fatherName || 'Not provided'}`,
-        `Contact Number: ${formData.contactNumber}`,
-        `Mail ID: ${formData.mailId}`,
-        `Previous Company Experience: ${formData.previousExperience || 'Not provided'}`,
-        `Previous Company Name: ${formData.previousCompanyName || 'Not provided'}`,
-        `Previous Company Salary Per Annum: ${formData.salaryPerAnnum || 'Not provided'}`,
-        `Preferred Work Location: ${formData.preferredLocation || 'Not provided'}`,
-        `Residency Location: ${formData.residencyLocation || 'Not provided'}`,
-        `Expected Salary: ${formData.expectedSalary || 'Not provided'}`,
-        '',
-        'Note: Please attach the relieving letter manually before sending this email.'
-      ].join('\n')
-    )
+    const message = [
+      'Hello NAH44,',
+      '',
+      'I would like to apply for an open opportunity:',
+      '',
+      `1. Full Name: ${formData.fullName}`,
+      `2. Date of Birth: ${formData.dob || 'Not provided'}`,
+      `3. Father's Name: ${formData.fatherName || 'Not provided'}`,
+      `4. Contact Number: ${formData.contactNumber}`,
+      `5. Mail ID: ${formData.mailId}`,
+      `6. Previous Experience (Years): ${formData.previousExperience || 'Not provided'}`,
+      `7. Previous Company Name: ${formData.previousCompanyName || 'Not provided'}`,
+      `8. Previous Salary Per Annum: ${formData.salaryPerAnnum || 'Not provided'}`,
+      `9. Preferred Work Location: ${formData.preferredLocation || 'Not provided'}`,
+      `10. Residency Location: ${formData.residencyLocation || 'Not provided'}`,
+      `11. Expected Salary (INR): ${formData.expectedSalary || 'Not provided'}`,
+    ].join('\n')
 
-    window.location.href = `mailto:${contactInfo.email}?subject=${subject}&body=${body}`
+    window.open(`https://wa.me/91${contactInfo.phone}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer')
     setIsApplicationFormOpen(false)
+    setFormData({
+      fullName: '',
+      dob: '',
+      fatherName: '',
+      contactNumber: '',
+      mailId: '',
+      previousExperience: '',
+      salaryPerAnnum: '',
+      previousCompanyName: '',
+      preferredLocation: '',
+      residencyLocation: '',
+      expectedSalary: '',
+    })
   }
 
   return (
@@ -395,12 +405,12 @@ function Careers() {
                 {/* Submit Button */}
                 <div className="span-2 center-action-row" style={{ marginTop: '15px' }}>
                   <button className="btn btn-primary" type="submit">
-                    Apply By Email
+                    Apply via WhatsApp
                   </button>
                 </div>
 
                 <p className="span-2 form-note">
-                  Your mail app will open with the form details filled in to sent.
+                  Your WhatsApp app will open with your application details pre-filled.
                 </p>
               </form>
             </div>

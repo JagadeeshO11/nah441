@@ -13,14 +13,13 @@ const contactSchema = {
   "mainEntity": {
     "@type": "FinancialService",
     "name": "NAH44",
-    "telephone": "+918367746197",
-    "email": "nah44vehicleservice@gmail.com",
+    "telephone": `+91${contactInfo.phone}`,
+    "email": contactInfo.email,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Beside sitara grand hotel lane, phase 1 kphb colony Hyderabad",
+      "streetAddress": contactInfo.address,
       "addressLocality": "Hyderabad",
       "addressRegion": "Telangana",
-      "postalCode": "500072",
       "addressCountry": "IN"
     }
   }
@@ -35,9 +34,6 @@ function Contact() {
     service: 'Insurance Services',
     message: '',
   })
-  
-  const [showSuccess, setShowSuccess] = useState(false)
-  const [isSending, setIsSending] = useState(false)
 
   const handleInputChange = (event) => {
     const { name, value } = event.target
@@ -52,19 +48,24 @@ function Contact() {
       return
     }
 
-    setIsSending(true)
+    const message = [
+      'Hello NAH44,',
+      '',
+      'I would like to submit a direct inquiry:',
+      `Name: ${formData.name}`,
+      `Phone: ${formData.phone}`,
+      `Service Interested In: ${formData.service}`,
+      `Message: ${formData.message || 'Not provided'}`
+    ].join('\n')
 
-    // Simulate API delay
-    setTimeout(() => {
-      setIsSending(false)
-      setShowSuccess(true)
-      setFormData({
-        name: '',
-        phone: '',
-        service: 'Insurance Services',
-        message: '',
-      })
-    }, 1000)
+    window.open(`https://wa.me/91${contactInfo.phone}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer')
+
+    setFormData({
+      name: '',
+      phone: '',
+      service: 'Insurance Services',
+      message: '',
+    })
   }
 
   return (
@@ -96,72 +97,72 @@ function Contact() {
              Service Request Form
            </h2>
 
-        <form className="form-grid" onSubmit={handleSubmit} noValidate>
-            <label htmlFor="contact-name">
-              <span>Full Name *</span>
-              <input
-                id="contact-name"
-                className="input"
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                value={formData.name}
-                onChange={handleInputChange}
-                required
-              />
-            </label>
+           <form className="form-grid" onSubmit={handleSubmit} noValidate>
+             <label htmlFor="contact-name">
+               <span>Full Name *</span>
+               <input
+                 id="contact-name"
+                 className="input"
+                 type="text"
+                 name="name"
+                 placeholder="Your Name"
+                 value={formData.name}
+                 onChange={handleInputChange}
+                 required
+               />
+             </label>
 
-            <label htmlFor="contact-phone">
-              <span>Phone Number *</span>
-              <input
-                id="contact-phone"
-                className="input"
-                type="tel"
-                name="phone"
-                placeholder="Phone Number"
-                value={formData.phone}
-                onChange={handleInputChange}
-                required
-              />
-            </label>
+             <label htmlFor="contact-phone">
+               <span>Phone Number *</span>
+               <input
+                 id="contact-phone"
+                 className="input"
+                 type="tel"
+                 name="phone"
+                 placeholder="Phone Number"
+                 value={formData.phone}
+                 onChange={handleInputChange}
+                 required
+               />
+             </label>
 
-            <label htmlFor="contact-service">
-              <span>Service Interested In *</span>
-              <select
-                id="contact-service"
-                className="select"
-                name="service"
-                value={formData.service}
-                onChange={handleInputChange}
-              >
-                <option value="Insurance Services">Insurance Services</option>
-                <option value="Home Loan Services">Home Loan Services</option>
-                <option value="Business Loan Support">Business Loan Support</option>
-                <option value="Personal Loan Support">Personal Loan Support</option>
-                <option value="Labour Licence compliance">Labour Licence compliance</option>
-                <option value="UDYAM MSME Registration">UDYAM MSME Registration</option>
-              </select>
-            </label>
+             <label htmlFor="contact-service">
+               <span>Service Interested In *</span>
+               <select
+                 id="contact-service"
+                 className="select"
+                 name="service"
+                 value={formData.service}
+                 onChange={handleInputChange}
+               >
+                 <option value="Insurance Services">Insurance Services</option>
+                 <option value="Home Loan Services">Home Loan Services</option>
+                 <option value="Business Loan Support">Business Loan Support</option>
+                 <option value="Personal Loan Support">Personal Loan Support</option>
+                 <option value="Labour Licence compliance">Labour Licence compliance</option>
+                 <option value="UDYAM MSME Registration">UDYAM MSME Registration</option>
+               </select>
+             </label>
 
-            <label htmlFor="contact-message" className="span-2">
-              <span>Short Requirement Summary</span>
-              <textarea
-                id="contact-message"
-                className="textarea"
-                name="message"
-                placeholder="Describe your requirement..."
-                value={formData.message}
-                onChange={handleInputChange}
-              />
-            </label>
+             <label htmlFor="contact-message" className="span-2">
+               <span>Short Requirement Summary</span>
+               <textarea
+                 id="contact-message"
+                 className="textarea"
+                 name="message"
+                 placeholder="Describe your requirement..."
+                 value={formData.message}
+                 onChange={handleInputChange}
+               />
+             </label>
 
-            <div className="span-2 center-action-row">
-              <button className="btn btn-primary" type="submit" disabled={isSending}>
-                {isSending ? 'Sending Request...' : 'Send Inquiry'}
-              </button>
-            </div>
-          </form>
-        </section>
+             <div className="span-2 center-action-row">
+               <button className="btn btn-primary" type="submit">
+                 Open WhatsApp
+               </button>
+             </div>
+           </form>
+         </section>
 
         {/* Contact Coordinates & Details */}
          <section className="section-frame contact-details" style={{ margin: 0, width: '100%' }} aria-labelledby="details-title">
@@ -263,26 +264,7 @@ function Contact() {
         </section>
       </div>
 
-      {/* Success Modal Popup Overlay */}
-      {showSuccess && (
-        <div className="success-modal" onClick={() => setShowSuccess(false)}>
-          <div className="success-modal__content" onClick={(e) => e.stopPropagation()}>
-            <div className="success-modal__icon">
-              <LuCheck size={32} />
-            </div>
-            <h3>Inquiry Transmitted!</h3>
-            <p>
-              Your service request has been successfully sent to NAH44.
-            </p>
-            <p style={{ fontSize: '12px' }}>
-              An advisory compliance officer will inspect your request and call you back shortly.
-            </p>
-            <button className="btn btn-primary" onClick={() => setShowSuccess(false)} style={{ marginTop: '10px' }}>
-              Close
-            </button>
-          </div>
-        </div>
-      )}
+
     </div>
   )
 }
